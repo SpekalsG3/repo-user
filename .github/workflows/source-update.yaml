@@ -27,8 +27,6 @@ jobs:
       - name: Set CI Status
         if: always()  # Run even if previous steps fail
         uses: actions/github-script@v7
-        permissions:
-          statuses: write
         with:
           script: |
             await github.rest.repos.createCommitStatus({
