@@ -15,6 +15,20 @@ jobs:
         uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Configure SSH for private dependency
+        run: |
+          mkdir -p ~/.ssh
+          echo "Host github.com
+                HostName github.com
+                User git
+                IdentityFile ~/.ssh/id_gh_default
+                IdentitiesOnly yes
+          Host github.com-private
+                HostName github.com
+                User git
+                IdentityFile ~/.ssh/id_rsa
+                IdentitiesOnly yes" >> ~/.ssh/config
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
       - name: Run cargo update
         run: |
           cd user
