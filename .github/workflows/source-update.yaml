@@ -13,7 +13,10 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - uses: actions/checkout@v4
+      - name: Run cargo update
+        run: |
+          cargo update source
       - name: Run cargo build
         run: |
           cd user
-          cargo build
+          cargo build --locked
