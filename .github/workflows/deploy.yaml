@@ -17,6 +17,7 @@ jobs:
         id: check-status
         with:
           script: |
+            console.log("context", context);
             const response = await github.rest.repos.getCombinedStatusForRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
