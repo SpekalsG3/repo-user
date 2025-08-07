@@ -22,7 +22,7 @@ jobs:
               repo: context.repo.repo,
               ref: context.sha,
             });
-            const ciStatus = response.data.statuses.find(status => status.context === 'source-change-check');
+            const ciStatus = response.data.statuses.find(status => status.context === 'ci-job');
             if (!ciStatus || ciStatus.state !== 'success') {
               core.setFailed('CI job has not succeeded. Deployment blocked.');
             }
