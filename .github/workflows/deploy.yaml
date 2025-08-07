@@ -1,0 +1,19 @@
+name: Deploy Job
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy'
+        required: true
+
+jobs:
+  deploy-job:
+    runs-on: ubuntu-latest
+    environment: production  # Links to the environment with required status checks
+    steps:
+      - name: Checkout Repo A
+        uses: actions/checkout@v4
+      - name: Deploy
+        run: |
+          echo "Deploying application to ${{ github.event.inputs.environment }}..."
+          # Add your deploy steps here
