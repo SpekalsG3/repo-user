@@ -2,7 +2,7 @@ name: Rebuild on source update
 
 on:
   repository_dispatch:
-    types: [my-event]
+    types: [repo-source-main-update]
 
 jobs:
   rebuild:
