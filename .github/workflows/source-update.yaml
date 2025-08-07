@@ -21,3 +21,17 @@ jobs:
         run: |
           cd user
           cargo build --locked
+      - name: Set CI Status
+        if: always()  # Run even if previous steps fail
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.sha,
+              state: "${{ job.status }}",
+              context: "ci-job",
+              description: "CI job triggered by Repo-Source",
+              target_url: "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            })
