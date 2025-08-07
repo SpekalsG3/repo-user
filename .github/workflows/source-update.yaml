@@ -18,6 +18,8 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.REPO_SOURCE_READ_KEY }}
       - name: Run cargo build
+        env:
+          CARGO_NET_GIT_FETCH_WITH_CLI: true
         run: |
           cd user
           cargo update source
