@@ -1,0 +1,13 @@
+name: Rebuild on source update
+
+on:
+  repository_dispatch:
+    types: [my-event]
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run cargo build
+        run: cargo build
