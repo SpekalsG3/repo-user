@@ -24,7 +24,7 @@ jobs:
             const response = await github.rest.repos.getCombinedStatusForRef({
               owner: context.payload.repository.owner.login,
               repo: context.payload.repository.name,
-              ref: context.ref,
+              ref: context.sha,
             });
             console.log("response.data.statuses:", response.data.statuses);
             const ciStatus = response.data.statuses.find(status => status.context === 'ci-job');
