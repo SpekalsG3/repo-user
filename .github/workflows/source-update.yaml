@@ -10,4 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run cargo build
-        run: cargo build
+        run: |
+          cd user
+          cargo build
