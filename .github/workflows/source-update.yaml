@@ -11,9 +11,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: 'main'
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.REPO_SOURCE_READ_KEY }}
       - name: Run cargo build
-        env:
-          CARGO_NET_GIT_FETCH_WITH_CLI: true
         run: |
           cd user
           cargo update source
