@@ -20,9 +20,10 @@ jobs:
         with:
           script: |
             console.log("context", context);
+            console.log("context owner", context.repository.owner);
             const response = await github.rest.repos.getCombinedStatusForRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+              owner: context.repository.owner,
+              repo: context.repository.name,
               ref: context.ref,
             });
             console.log("response.data.statuses:", response.data.statuses);
