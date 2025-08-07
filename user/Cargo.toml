@@ -1,0 +1,7 @@
+[package]
+name = "user"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+source = { git = "ssh://git@github.com/SpekalsG3/repo-source.git", branch = "main", package = "source" }
