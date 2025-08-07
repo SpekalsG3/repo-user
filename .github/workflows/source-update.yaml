@@ -5,7 +5,7 @@ on:
     types: [repo-source-main-update]
 
 jobs:
-  rebuild:
+  source-change-check:
     runs-on: ubuntu-latest
     steps:
       - name: Set up SSH agent
