@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       statuses: read
+      contents: read
     environment: production  # Links to the environment with required status checks
     steps:
       - name: Check CI Job Status
@@ -21,6 +22,9 @@ jobs:
           script: |
             console.log("context", context);
             console.log("context owner", context.payload.repository.owner);
+            console.log("owner:", context.payload.repository.owner.login);
+            console.log("repo:", context.payload.repository.name);
+            console.log("ref:", context.sha);
             const response = await github.rest.repos.getCombinedStatusForRef({
               owner: context.payload.repository.owner.login,
               repo: context.payload.repository.name,
