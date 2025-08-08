@@ -3,7 +3,9 @@ name: Rebuild on source update
 on:
   push:
     branches:
-    - main
+      - main
+    paths:
+      - user/**/*
   repository_dispatch:
     types: [repo-source-main-update]
 

@@ -20,17 +20,11 @@ jobs:
         id: check-status
         with:
           script: |
-            console.log("context", context);
-            console.log("context owner", context.payload.repository.owner);
-            console.log("owner:", context.payload.repository.owner.login);
-            console.log("repo:", context.payload.repository.name);
-            console.log("ref:", context.sha);
             const response = await github.rest.repos.getCombinedStatusForRef({
               owner: context.payload.repository.owner.login,
               repo: context.payload.repository.name,
               ref: context.sha,
             });
-            console.log("response.data.statuses:", response.data.statuses);
             const ciStatus = response.data.statuses.find(status => status.context === 'ci-job');
             if (!ciStatus || ciStatus.state !== 'success') {
               core.setFailed('CI job has not succeeded. Deployment blocked.');
